@@ -22,8 +22,6 @@ class BST_NODE():
                 else:
                     self.LeftChild = BST_NODE(data)
 
-
-
     def Inorder_Traversal(self, root):
         # Inorder traversal
         # Left -> Root -> Right
@@ -53,30 +51,28 @@ class BST_NODE():
             res = res + self.PostorderTraversal(root.RightChild)
             res.append(root.data)
         return res
-    
+
     def find_max_node(self):
-        
+
         if self.RightChild is None:
-             
             return self.data
-            
+
         return self.RightChild.find_max_node()
-    
+
     def find_min_node(self):
-        
- 
+
         if self.LeftChild is None:
             return self.data
-            
+
         return self.LeftChild.find_min_node()
 
     def delete_node(self, data):
-        
+
         if data > self.data:
-            if self.RightChild :
+            if self.RightChild:
                 self.RightChild = self.RightChild.delete_node(data)
         elif data < self.data:
-            if self.LeftChild :
+            if self.LeftChild:
                 self.LeftChild = self.LeftChild.delete_node(data)
         else:
             if self.LeftChild is None and self.RightChild is None:
@@ -85,21 +81,21 @@ class BST_NODE():
                 return self.RightChild
             elif self.RightChild is None:
                 return self.LeftChild
-            
+
             # if Both Risk and left child nodes are present
-            # find min value from Righ sub tree
-            # Assign to the node we are trying to delete
-            # then delete duplciate node 
-            # assing modified sub tree to Right sub tree
+            '''find min value from Right sub tree
+            Assign to the node we are trying to delete
+            then delete duplicate node
+            assign modified sub tree to Right sub tree'''
+
             min_val = self.RightChild.find_min_node()
-            print(min_val)
             self.data = min_val
             self.RightChild = self.RightChild.delete_node(min_val)
-        
-        return self
-        
-if __name__ == "__main__":
 
+        return self
+
+
+if __name__ == "__main__":
     Root = BST_NODE(3)
     Root.insert_node(4)
     Root.insert_node(1)
@@ -109,10 +105,10 @@ if __name__ == "__main__":
     Root.insert_node(7)
     print(Root.Inorder_Traversal(Root))
     print(Root.Preorder_Traversal(Root))
-    print(Root.PostorderTraversal(Root)) 
-    #print(Root.find_max_node())
-    #print(Root.find_min_node())
+    print(Root.PostorderTraversal(Root))
+    # print(Root.find_max_node())
+    # print(Root.find_min_node())
     Root.delete_node(4)
     print(Root.Inorder_Traversal(Root))
     print(Root.Preorder_Traversal(Root))
-    print(Root.PostorderTraversal(Root)) 
+    print(Root.PostorderTraversal(Root))
