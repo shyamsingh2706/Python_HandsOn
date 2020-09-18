@@ -1,0 +1,10 @@
+	The end date is a straight BD13 date of the 1 month after quarter-end of the last closed quarter. For example since Q2 closed on June 30th, we take BD 13 of July to be the end date for the QA scope for Q2
+
+	The start date however is the BD13 + 1 calendar day of the first month of the quarter in question. For example using Q2 as the quarter in question for metrics production, since Q2 starts in April, we take BD 13 + 1 calendar of April to be the start date for the QA scope for Q2. We could have simply taken BD14 but there are times when we see events approved on a Saturday or a Sunday so using a calendar day after BD 13 helps ensure that nothing falls off the net. 
+
+Start Dates = BD13 + 1 Calendar Day	  End date = BD13       	QA Scope Quarter
+18-Jan-20	                              17-Apr-20	              Q1 2020
+18-Apr-20	                              17-Jul-20	              Q2 2020
+18-Jul-20	                              19-Oct-20	              Q3 2020
+20-Oct-20	                              19-Jan-21	              Q4 2020
+20-Jan-21	                              19-Apr-21	              Q1 2021
