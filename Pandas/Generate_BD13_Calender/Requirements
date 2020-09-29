@@ -8,3 +8,5 @@ Start Dates = BD13 + 1 Calendar Day	  End date = BD13       	QA Scope Quarter
 18-Jul-20	                              19-Oct-20	              Q3 2020
 20-Oct-20	                              19-Jan-21	              Q4 2020
 20-Jan-21	                              19-Apr-21	              Q1 2021
+
+PS : Please account of Custome US holiday cllender while calculating B13 date for each Month.
