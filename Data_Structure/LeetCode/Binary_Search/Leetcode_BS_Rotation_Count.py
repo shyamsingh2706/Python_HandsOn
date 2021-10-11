@@ -19,16 +19,20 @@ def Array_Rotation_Count(arr):
         #arr_end = arr[end]
 
         #Checking if mid is minimum
-        if arr[mid_element] < arr[prev_element] and arr[mid_element] < arr[next_element]:
+        if arr[mid_element] < arr[prev_element] and arr[mid_element] <= arr[next_element]:
             return mid_element
         #if not move towards the unsorted part of array
         #If the minimum element is not at the middle (neither mid nor mid + 1), then minimum element lies in either left half or right half.
-            #If middle element is smaller than last element, then right half is sorted and  then the minimum element lies in left half i.e. end = mid_element-1
-            #If middle element is greater than first element, then first half is sorted and then the minimum element lies in right half i.e. start = mid_element+1
-        elif  arr[mid_element] >= arr[start]:
-            start = mid_element+1
-        elif arr[mid_element] <= arr[end]:
-            end = mid_element-1
+            # if already in Sorted array postion , return start position
+            # If middle element is smaller than last element, then right half is sorted and  then the minimum element lies in left half i.e. end = mid_element-1
+            # If middle element is greater than first element, then first half is sorted and then the minimum element lies in right half i.e. start = mid_element+1
+        else:
+            if arr[mid_element] >= arr[start] and arr[mid_element] <= arr[end]:
+                return start
+            elif arr[mid_element] >= arr[start]:
+                start = mid_element + 1
+            elif arr[mid_element] <= arr[end]:
+                end = mid_element - 1
 
 
 def main():
