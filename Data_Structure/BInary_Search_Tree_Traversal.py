@@ -51,6 +51,34 @@ class BST_NODE():
             res = res + self.PostorderTraversal(root.RightChild)
             res.append(root.data)
         return res
+    
+    # Level order traversal 
+    def printLevelOrder(self,root):
+        # Base Case
+        if root is None:
+            return
+
+        # Create an empty queue
+        # for level order traversal
+        queue = []
+
+        # Enqueue Root and initialize height
+        queue.append(root)
+
+        while (len(queue) > 0):
+
+            # Print front of queue and
+            # remove it from queue
+            print(queue[0].data)
+            node = queue.pop(0)
+
+            # Enqueue left child
+            if node.left is not None:
+                queue.append(node.left)
+
+            # Enqueue right child
+            if node.right is not None:
+                queue.append(node.right)
 
     def find_max_node(self):
 
