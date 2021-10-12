@@ -15,6 +15,7 @@ class BT():
         # Create an empty queue
         # for level order traversal
         queue = []
+        res = [] ## to capture level order transversal
 
         # Enqueue Root and initialize height
         queue.append(root)
@@ -23,7 +24,7 @@ class BT():
 
             # Print front of queue and
             # remove it from queue
-            print(queue[0].data)
+            res.append(queue[0].data)
             node = queue.pop(0)
 
             # Enqueue left child
@@ -34,6 +35,7 @@ class BT():
             if node.right is not None:
                 queue.append(node.right)
 
+        return res
 
     def invert_BT(self,root):
 
@@ -51,17 +53,17 @@ class BT():
 
             # Print front of queue and
             # remove it from queue
-            print(queue[0].data)
-            node = queue.pop(0)
 
-            # Enqueue right child
-            if node.right is not None:
-                queue.append(node.right)
+            node = queue.pop(0)
+            node.left,node.right = node.right,node.left
 
             # Enqueue left child
             if node.left is not None:
                 queue.append(node.left)
 
+            # Enqueue right child
+            if node.right is not None:
+                queue.append(node.right)
 
 
 
@@ -75,8 +77,9 @@ def main() :
     root.right.left = BT(6)
     root.right.right = BT(9)
 
-    print("tree level order transversal for Inverted BT is", root.invert_BT(root))
-
+    print("tree level order transversal for BT is", root.printLevelOrder(root))
+    root.invert_BT(root)
+    print("tree level order transversal for Inverted BT is", root.printLevelOrder(root))
 
 if __name__ == "__main__" :
     main()
