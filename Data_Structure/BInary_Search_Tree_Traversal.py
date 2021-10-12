@@ -53,32 +53,29 @@ class BST_NODE():
         return res
     
     # Level order traversal 
-    def printLevelOrder(self,root):
-        # Base Case
-        if root is None:
-            return
+    def level_order_transversal(self,root):
 
-        # Create an empty queue
-        # for level order traversal
-        queue = []
 
-        # Enqueue Root and initialize height
-        queue.append(root)
+        tree = [] ## Create a Queue for Tree to navigate tree in level order
+        res = [] ## to print result
 
-        while (len(queue) > 0):
+        if root == None :
+            return 0
 
-            # Print front of queue and
-            # remove it from queue
-            print(queue[0].data)
-            node = queue.pop(0)
+        tree.append(root)
 
-            # Enqueue left child
-            if node.left is not None:
-                queue.append(node.left)
+        while len(tree) > 0 :
 
-            # Enqueue right child
-            if node.right is not None:
-                queue.append(node.right)
+            res.append(tree[0].data)
+            node = tree.pop(0)
+
+            if node.left :
+                tree.append(node.left)
+
+            if node.right :
+                tree.append(node.right)
+
+        return res
 
     def find_max_node(self):
 
