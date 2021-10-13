@@ -158,7 +158,7 @@ def main() :
     print("tree level order transversal for BT is", root.level_order_transversal(root))
     print("Pre order transversal for  BT is", root.pre_order_transversal(root))
     print("height of tree is :", root.get_height(root))
-    print("tree level order transversal for BT is", root.zigzag_level_order_transversal(root))
+    print("Zigzag tree level order transversal for BT is", root.zigzag_level_order_transversal(root))
 
 if __name__ == "__main__" :
     main()
