@@ -87,6 +87,45 @@ class BT():
 
         return res
 
+    # Function to print the zigzag traversal
+    def zigZagTraversal_2ndApproach(self,root):
+        q = deque([])
+        v = []
+        q.append(root)
+        v.append(root.data)
+
+        # set initial level as 1, because root is
+        # already been taken care of.
+        l = 1
+
+        while len(q) > 0:
+            n = len(q)
+            for i in range(n):
+                # popping mechanism
+                if (l % 2 == 0):
+                    temp = q[-1]
+                    q.pop()
+                else:
+                    temp = q[0]
+                    q.popleft()
+
+                # pushing mechanism
+                if (l % 2 != 0):
+                    if (temp.right):
+                        q.append(temp.right)
+                        v.append(temp.right.data)
+                    if (temp.left):
+                        q.append(temp.left)
+                        v.append(temp.left.data)
+                elif (l % 2 == 0):
+                    if (temp.left):
+                        q.appendleft(temp.left)
+                        v.append(temp.left.data)
+                    if (temp.right):
+                        q.appendleft(temp.right)
+                        v.append(temp.right.data)
+            l += 1  # level plus one
+        return v
 
     def pre_order_transversal(self,root):
 
@@ -156,9 +195,8 @@ def main() :
     root=createTree(arr,root)
 
     print("tree level order transversal for BT is", root.level_order_transversal(root))
-    print("Pre order transversal for  BT is", root.pre_order_transversal(root))
-    print("height of tree is :", root.get_height(root))
     print("Zigzag tree level order transversal for BT is", root.zigzag_level_order_transversal(root))
+    print("Zigzag tree level order transversal for BT with 2nd Approach is", root.zigZagTraversal_2ndApproach(root))
 
 if __name__ == "__main__" :
     main()
