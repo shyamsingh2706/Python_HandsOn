@@ -1,3 +1,5 @@
+# https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
+# https://www.geeksforgeeks.org/zigzag-tree-traversal/
 
 from collections import deque
 
