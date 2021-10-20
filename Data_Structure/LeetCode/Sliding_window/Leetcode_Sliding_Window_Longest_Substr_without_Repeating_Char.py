@@ -23,10 +23,6 @@ def lengthOfLongestSubstring_SW(arr) :
         end = 0
 
         Longest_Substr = 0
-
-        temp_str = ''
-
-        Longest_Substr = 0
         temp_substr = ''
 
         while end < len(arr):
