@@ -40,7 +40,7 @@ def main():
     Input_list_len = len(input_list_val)
     Target = Input_list_len ### As Target Length is not given , we need to consider the Input list length as Target length
 
-    Max_profit = Unbounded_knapsack(input_list_wt,input_list_val,Target_wt,Input_list_len)
+    Max_profit = Unbounded_knapsack(input_list_wt,input_list_val,Target,Input_list_len)
     print(Max_profit)
 
 if __name__ == "__main__" :
