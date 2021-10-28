@@ -8,55 +8,53 @@
 # Determine the perimeter of the island.
 import numpy as np
 
-def IslandPerimeter(grid):
+class Solution:
+    def islandPerimeter(self,grid:list[list[int]]) -> int:
 
-    rows = len(grid)
-    cols = len(grid[0])
+        rows = len(grid)
+        cols = len(grid[0])
 
-    # if grid is empty, return 0
-    if (rows == 0 and cols == 0):
-        return 0
-
-    global visited
-    visited = np.full((rows, cols), False).tolist()
-
-    for i in range(rows):
-        for j in range(cols):
-            if grid[i][j] == 1:
-                return CalIslandPerimeter(grid,i,j,rows,cols,visited)
-    return 0
-
-def CalIslandPerimeter(grid,i,j,rows,cols,visited):
-
-    # check for out of bound , return 1 as it has to be counted in perimeter
-    if  i < 0 or j < 0 or i >= rows or j >= cols  :
-        return 1
-
-    # if not outbound
-    else:
-
-        # if node is 0 , count as perimeter
-        if grid[i][j] == 0:
-            return 1
-
-        # if node is 1 and  is already visited
-        # dont count in
-        if (  grid[i][j] == 1 and visited[i][j] == True) :
+        # if grid is empty, return 0
+        if (rows == 0 and cols == 0):
             return 0
 
+        for i in range(rows):
+            for j in range(cols):
+                if grid[i][j] == 1:
+                    return self.__CalIslandPerimeter(grid,i,j,rows,cols)
+        return 0
 
-        # if not outbound and node is not visited and node is 1
-        # mark as visited
-        visited[i][j] = True
+    def __CalIslandPerimeter(self,grid,i,j,rows,cols):
 
-        # check its neibourhood nodes in all direction
-        left = CalIslandPerimeter(grid,i,j-1,rows,cols,visited)
-        right = CalIslandPerimeter(grid, i, j+1, rows, cols,visited)
-        up = CalIslandPerimeter(grid, i-1, j, rows, cols,visited)
-        down = CalIslandPerimeter(grid, i+1, j, rows, cols,visited)
+        # check for out of bound , return 1 as it has to be counted in perimeter
+        if  i < 0 or j < 0 or i >= rows or j >= cols  :
+            return 1
 
-        # return total parimeter sum
-        return left+right+up+down
+        # if not outbound
+        else:
+
+            # if node is 0 , count as perimeter
+            if grid[i][j] == 0:
+                return 1
+
+            # if node is 1 and  is already visited
+            # dont count in
+            if (  grid[i][j] == -1) :
+                return 0
+
+
+            # if not outbound and node is not visited and node is 1
+            # mark as visited
+            grid[i][j] = -1
+
+            # check its neibourhood nodes in all direction
+            left = self.__CalIslandPerimeter(grid,i,j-1,rows,cols)
+            right = self.__CalIslandPerimeter(grid, i, j+1, rows, cols)
+            up = self.__CalIslandPerimeter(grid, i-1, j, rows, cols)
+            down = self.__CalIslandPerimeter(grid, i+1, j, rows, cols)
+
+            # return total parimeter sum
+            return left+right+up+down
 
 def main():
 
@@ -69,7 +67,8 @@ def main():
             [1,1,0,0]
             ]
 
-    print("Island perimeter length is " , IslandPerimeter(grid))
+    sol = Solution()
+    print("Island perimeter length is " , sol.islandPerimeter(grid))
 
 if __name__ == "__main__":
     main()
