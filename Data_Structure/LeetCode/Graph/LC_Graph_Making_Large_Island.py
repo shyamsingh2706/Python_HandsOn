@@ -93,7 +93,7 @@ def main():
 
     s = Solution()
 
-    print("Number of Unique Islands are" , s.largestIsland(grid))
+    print("Max Area Island posible is" , s.largestIsland(grid))
 
 if __name__ == "__main__":
     main()
