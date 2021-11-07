@@ -62,7 +62,7 @@ def mergeTwoLists_Optimized(head1,head2):
     # if head2 is smaller , point head1 to smaller element
     if head1.data > head2.data :
         temp = head1
-        head1 = l2
+        head1 = head2
         head2 = temp
 
     # mark new head to head1 as it will point to smaller element
