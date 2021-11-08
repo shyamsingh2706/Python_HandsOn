@@ -18,35 +18,34 @@ class node():
         self.data = data
         self.next = next
 
-def getIntersectionNode(head1,head2):
+class Solution:
+    def getIntersectionNode(self, headA, headB) :
 
-    itr1 = head1
-    itr2 = head2
-    swap_head1 = 'N'
-    swap_head2 = 'N'
+        self.itr1 = headA
+        self.itr2 = headB
+        self.swap_head1 = 'N'
+        self.swap_head2 = 'N'
 
+        while self.itr1 is not None or self.itr2 is not None:
 
-    while itr1 is not None or itr2 is not None:
+            # if list 1 & list 2 has different length , then we will stop loop after 2nd iteration
+            # for first iteration , we just reset pointer to head of another linked list to mitigate the difference of length
+            if self.itr1 is None and self.swap_head1 == 'N':
+                self.itr1 = headB
+                self.swap_head1 = 'Y'
 
-        # if list 1 & list 2 has different length , then we will stop loop after 2nd iteration
-        # for first iteration , we just reset pointer to head of another linked list to mitigate the difference of length
-        if itr1 is None and swap_head1 == 'N' :
-            itr1 = head2
-            swap_head1 = 'Y'
+            if self.itr2 is None and self.swap_head2 == 'N':
+                self.itr2 = headA
+                self.swap_head2 = 'Y'
 
-        if itr2 is None and swap_head2 == 'N' :
-            itr2 = head1
-            swap_head2 = 'Y'
+            # if a node is same in both linked list, return its value
+            if self.itr1 == self.itr2:
+                return self.itr1.data
 
-        # if a ndoe is same in both linked list, return its value
-        if itr1 == itr2 :
-            return itr1.data
+            self.itr1 = self.itr1.next
+            self.itr2 = self.itr2.next
 
-        #print(itr1.data , itr2.data)
-        itr1 = itr1.next
-        itr2 = itr2.next
-
-    return -1
+        return None
 
 def main() :
 
@@ -75,7 +74,8 @@ def main() :
     node05.next = node06
     LnkLst.print_linked_list(node01)
 
-    intersect_num = getIntersectionNode(node1,node01)
+    sol = Solution()
+    intersect_num = sol.getIntersectionNode(node1,node01)
     print("Intersection node is : " , intersect_num)
 
 if __name__  == '__main__':
