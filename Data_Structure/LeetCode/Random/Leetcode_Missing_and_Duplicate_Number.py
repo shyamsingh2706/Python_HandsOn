@@ -81,6 +81,33 @@ def printTwoElements_swap_Sort(arr):
             print("The missing element is", idx+1)
 
 
+
+# time Complx : O(n) , space Complxity O(1)
+# Given an array of integers nums containing n + 1 integers where each integer is in the range [1, n] inclusive.
+# There is only one repeated number in nums, return this repeated number.
+# You must solve the problem without modifying the array nums and uses only constant extra space.
+
+# Apply the linked list cycle detection algorithm here. move slow by 1 pointer and fast by 2 pointer.
+# where they collide, move fast pointer to index 0 and move slow and fast pointer toghether
+# where they clash will be duplicate element
+def containsDuplicate_LL(arr):
+
+    slow = 0
+    fast = 0
+
+    while True :
+        slow = arr[slow] # pick 0th index position and jump to index postion what 0th index contains
+        fast = arr[arr[fast]] # pick 0th index position and jump to index's index postion what 0th index contains
+        if slow == fast:
+            break
+
+    slow = 0
+    while slow != fast:
+        slow = arr[slow]
+        fast = arr[fast]
+    return slow
+
+
 def main():
 
     arr = [1,5,3,4,6,5]
