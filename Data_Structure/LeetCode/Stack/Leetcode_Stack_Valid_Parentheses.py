@@ -17,17 +17,18 @@ class Solution:
             return False
 
         for ch in parenthesis:
+            # if open , add into stack
             if ch in self.open:
                 self.stack.append(self.close[self.open.index(ch)])
+            # if closing parenthesis and stack is not empty and current char is matching with last stack char
+            # pop last element of stack
             elif len(self.stack) != 0 and ch == self.stack[-1]:
                     self.stack.pop()
+            # else return False
             else:
                 return False
 
-        if len(self.stack) == 0:
-            return True
-        else:
-            return False
+        return len(self.stack) == 0
 
 
 def main():
