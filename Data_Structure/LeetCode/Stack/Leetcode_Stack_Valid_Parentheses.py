@@ -6,27 +6,34 @@
 # Open brackets must be closed by the same type of brackets.
 # Open brackets must be closed in the correct order.
 
-def solve(parenthesis):
-    stack = []
-    open = ['(', '{', '[']
-    close = [')', '}', ']']
+class Solution:
+    def isValid(self,parenthesis):
+        self.stack = []
+        self.open = ['(', '{', '[']
+        self.close = [')', '}', ']']
 
-    for ch in parenthesis:
-        if ch in open:
-            stack.append(close[open.index(ch)])
 
-        elif len(stack) != 0 and ch == stack[-1]:
-            stack.pop()
+        if len(parenthesis) == 1 or len(parenthesis) % 2 != 0 :
+            return False
 
-    if len(stack) == 0:
-        return True
-    else:
-        return False
+        for ch in parenthesis:
+            if ch in self.open:
+                self.stack.append(self.close[self.open.index(ch)])
+            elif len(self.stack) != 0 and ch == self.stack[-1]:
+                    self.stack.pop()
+            else:
+                return False
+
+        if len(self.stack) == 0:
+            return True
+        else:
+            return False
 
 
 def main():
-    arr = "{[]}"
-    print("Valid Parentheses for given combination is ", solve(arr))
+    arr = "))"
+    s = Solution()
+    print("Valid Parentheses for given combination is ", s.isValid(arr))
 
 
 if __name__ == "__main__":
