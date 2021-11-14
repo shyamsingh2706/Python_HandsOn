@@ -6,7 +6,12 @@
 # If the array contains multiple peaks, return the index to any of the peaks.
 
 def BS_Peak_Element(arr,start,end):
-
+    
+    if len(arr) == 0:
+        return
+    elif len(arr) == 1:
+        return 0
+    
     while end >= start:
         mid_element = (start+end) // 2
         ## Handle edge case as Boundary elements has only one neighbour
