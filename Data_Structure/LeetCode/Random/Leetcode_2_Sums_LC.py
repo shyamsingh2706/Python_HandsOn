@@ -1,4 +1,4 @@
-
+ 
 #https://leetcode.com/problems/two-sum/
 
 class cls_solutions_SubSet_sum () :
@@ -13,7 +13,7 @@ class cls_solutions_SubSet_sum () :
         for idx, val in enumerate(self.Input_list):
             if self.target - val in self.Input_list[idx + 1:]:
                 #return [idx, self.Input_list[idx + 1:].index(self.target - val) + (idx + 1)]
-                return [idx, self.Input_list.index(self.target - val)]
+                return [idx, self.Input_list.index(self.target - val,idx+1)]
 
         return "Invalid Target Input"
 
