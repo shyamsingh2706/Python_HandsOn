@@ -1,41 +1,85 @@
 
-#https://www.geeksforgeeks.org/minimum-number-platforms-required-railwaybus-station/
+# https://www.geeksforgeeks.org/minimum-number-platforms-required-railwaybus-station/
+#  For example, consider the above example.
 
-def calculate_min_platform(X,Y):
+# arr[]  = {9:00,  9:40, 9:50,  11:00, 15:00, 18:00}
+# dep[]  = {9:10, 12:00, 11:20, 11:30, 19:00, 20:00}
 
-    Max_no_platform = 1
-    Curent_platform_Count = 0
+# All events are sorted by time.
+# Total platforms at any time can be obtained by
+# subtracting total departures from total arrivals
+# by that time.
 
-    Arrival_time = X[0]
-    Departure_time = Y[0]
+#  Time      Event Type     Total Platforms Needed
+#                                at this Time
+#  9:00       Arrival                  1
+#  9:10       Departure                0
+#  9:40       Arrival                  1
+#  9:50       Arrival                  2
+#  11:00      Arrival                  3
+#  11:20      Departure                2
+#  11:30      Departure                1
+#  12:00      Departure                0
+#  15:00      Arrival                  1
+#  18:00      Arrival                  2
+#  19:00      Departure                1
+#  20:00      Departure                0
+#
+# Minimum Platforms needed on railway station
+# = Maximum platforms needed at any time
+# = 3
 
-    if (len(X)== 1 and len(Y) == 1 ) :
 
-        return Max_no_platform
+def findPlatform(arr, dep, n):
 
-    for i in range(1,len(X)):
+    # Sort arrival and
+    # departure arrays
+    arr.sort()
+    dep.sort()
 
-        cur_arv = X[i]
-        curr_dep = Y[i]
+    # plat_needed indicates
+    # number of platforms
+    # needed at a time
+    plat_needed = 1
+    result = 1
+    i = 1
+    j = 0
 
-        if X[i] > Arrival_time and  X[i] < Departure_time :
-            Curent_platform_Count += 1
-            Departure_time = max(Y[i],Departure_time)
-            Arrival_time = max(X[i], Arrival_time)
-            Max_no_platform = max(Curent_platform_Count,Max_no_platform)
-        else:
-            Departure_time = max(Y[i], Departure_time)
-            Arrival_time = max(X[i], Arrival_time)
+    # Similar to merge in
+    # merge sort to process
+    # all events in sorted order
+    while (i < n and j < n):
 
-    return Max_no_platform
+        # If next event in sorted
+        # order is arrival,
+        # increment count of
+        # platforms needed
+        if (arr[i] <= dep[j]):
+
+            plat_needed += 1
+            i += 1
+
+        # Else decrement count
+        # of platforms needed
+        elif (arr[i] > dep[j]):
+
+            plat_needed -= 1
+            j += 1
+
+        # Update result if needed
+        if (plat_needed > result):
+            result = plat_needed
+
+    return result
 
 
 def main() :
 
     arr  = [900,940,950,1100,1500,1800]
     dep  = [910,1200,1120,1130,1900,2000]
+    n = len(arr)
 
-    Min_No_of_platform = calculate_min_platform(arr,dep)
+    Min_No_of_platform = findPlatform(arr,dep,n)
     print(Min_No_of_platform)
 
 
