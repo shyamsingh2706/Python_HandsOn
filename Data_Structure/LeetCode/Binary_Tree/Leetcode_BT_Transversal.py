@@ -38,8 +38,8 @@ class BST_NODE():
         res = []
         if root:
             res.append(root.data)
-            res = res + self.Inorder_Traversal(root.LeftChild)
-            res = res + self.Inorder_Traversal(root.RightChild)
+            res = res + self.Preorder_Traversal(root.LeftChild)
+            res = res + self.Preorder_Traversal(root.RightChild)
         return res
 
     # Postorder traversal
