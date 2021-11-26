@@ -28,10 +28,32 @@ def print_all_subset(arr,output_arr=[],op=''):
 
     return output_arr
 
+# if it has to go in Array form 
+class Solution:
+    def subsets(self, nums) :
+        res = self.print_all_subset(nums, [], [])
+        return res
+
+    def print_all_subset(self, nums, output_arr, op):
+        if len(nums) == 0:
+            output_arr.append([op][0])
+            return
+
+        op1 = op.copy()  # initialize Both Output of decesion tree as initial output string # for the decesion tree where we are not considering the first element
+        op2 = op.copy()  # initialize Both Output of decesion tree as initial output string # for the decesion where we are considering the first element
+
+        op2 = op2 + [nums[0]]  # initialize Output2 string with 0th Index as we are considering first element in array and remaining element has to go through decesion tree
+        nums = nums[1:]  # reset array with remaining element
+        self.print_all_subset(nums, output_arr, op1)
+        self.print_all_subset(nums, output_arr, op2)
+
+        return output_arr
+
 def main():
 
     arr = [1,2,3]
-    print(print_all_subset(arr))
+    s = Solution()
+    print(s.subsets(arr))
 
 if __name__ == "__main__":
     main()
