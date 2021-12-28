@@ -3,6 +3,8 @@ import sys
 
 ## https://www.geeksforgeeks.org/find-minimum-number-of-coins-that-make-a-change/
 ## https://www.youtube.com/watch?v=I-l6PBeERuc&list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go&index=16 video explanation
+## https://leetcode.com/problems/coin-change/
+
 
 def Unbounded_knapsack_Coin_Change_Min_No_of_Coin (Input_list_wt,Target,Input_list_len):
 
@@ -28,7 +30,7 @@ def Unbounded_knapsack_Coin_Change_Min_No_of_Coin (Input_list_wt,Target,Input_li
         else :
             dp[1][j] = sys.maxsize - 1  ## -1 is being done in Int Max size becuase when we consider +1 while considering the coin, it might cause overflow
 
-    print(dp)
+    #print(dp)
 
     for i in range(1,dp_rows):
         for j in range(1,dp_columns):
@@ -37,8 +39,30 @@ def Unbounded_knapsack_Coin_Change_Min_No_of_Coin (Input_list_wt,Target,Input_li
             if Input_list_wt[i-1] <= j :
                 dp[i][j] = min(dp[i-1][j] , 1 + dp[i][j - Input_list_wt[i-1]]  ) ## one has been added as coin has been considered
 
-    print(dp)
-    return dp[Input_list_len][Target]
+    #print(dp)
+    if dp[Input_list_len][Target] == sys.maxsize - 1:
+        return -1
+    else:
+        return dp[Input_list_len][Target]
+
+## optimzed Solution :
+
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+
+        # create an array to fill with max size that will be amount + 1  
+        dp = [amount + 1] * (amount + 1)
+        dp[0] = 0
+
+        for a in range(1, amount + 1):
+            for c in coins:
+                if a - c >= 0:
+                    dp[a] = min(dp[a], 1 + dp[a - c])
+
+        if dp[amount] != amount + 1 :
+            return dp[amount]
+        else :
+            return -1
 
 
 def main():
@@ -50,7 +74,7 @@ def main():
 
     Input_list_len = len(input_list_wt)
     Max_no_of_ways = Unbounded_knapsack_Coin_Change_Min_No_of_Coin(input_list_wt,Target_wt,Input_list_len)
-    print(Min_no_of_ways)
+    print(Max_no_of_ways)
 
 if __name__ == "__main__" :
     main()
